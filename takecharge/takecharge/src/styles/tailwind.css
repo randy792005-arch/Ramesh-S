@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Grey and white theme */
+    --color-background: #FFFFFF; /* pure white */
+    --color-foreground: #1F2937; /* dark grey text */
+    --color-border: #E5E7EB; /* light grey border */
+    --color-input: #FFFFFF; /* white inputs */
+    --color-ring: #6B7280; /* medium grey focus ring */
+    
+    /* Card Colors */
+    --color-card: #FFFFFF; /* white card surface */
+    --color-card-foreground: #1F2937; /* dark grey */
+    
+    /* Popover Colors */
+    --color-popover: #FFFFFF; /* white popovers */
+    --color-popover-foreground: #1F2937; /* dark grey */
+    
+    /* Muted Colors */
+    --color-muted: #F9FAFB; /* very light grey muted surface */
+    --color-muted-foreground: #6B7280; /* medium grey */
+    
+    /* Primary Colors */
+    --color-primary: #4B5563; /* medium grey primary */
+    --color-primary-foreground: #FFFFFF; /* white on primary */
+    
+    /* Secondary Colors */
+    --color-secondary: #9CA3AF; /* light grey secondary */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #6B7280; /* medium grey accent */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* State Colors */
+    --color-destructive: #DC2626; /* red for destructive */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    --color-success: #10B981; /* green success */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F59E0B; /* amber */
+    --color-warning-foreground: #1F2937; /* dark grey text */
+    --color-error: #EF4444; /* red */
+    --color-error-foreground: #FFFFFF; /* white */
+  }
+}
+
+/* Dark theme overrides when [data-theme="dark"] is set on <html> */
+@layer base {
+  [data-theme="dark"] {
+    --color-background: #111827; /* dark grey background */
+    --color-foreground: #F9FAFB; /* light grey text */
+    --color-border: #374151; /* medium grey border */
+    --color-input: #1F2937; /* dark grey input */
+    --color-ring: #9CA3AF; /* light grey focus ring */
+
+    --color-card: #1F2937; /* dark grey card surface */
+    --color-card-foreground: #F9FAFB; /* light grey text */
+
+    --color-popover: #111827; /* dark grey popover */
+    --color-popover-foreground: #F9FAFB; /* light grey text */
+
+    --color-muted: #374151; /* medium grey muted surface */
+    --color-muted-foreground: #D1D5DB; /* light grey text */
+
+    --color-primary: #9CA3AF; /* light grey primary */
+    --color-primary-foreground: #111827; /* dark grey text on primary */
+
+    --color-secondary: #6B7280; /* medium grey secondary */
+    --color-secondary-foreground: #F9FAFB; /* light grey text */
+    --color-accent: #4B5563; /* medium-dark grey accent */
+    --color-accent-foreground: #F9FAFB; /* light grey text */
+
+    --color-destructive: #ef4444;
+    --color-destructive-foreground: #FFFFFF;
+    --color-success: #10b981;
+    --color-success-foreground: #FFFFFF;
+    --color-warning: #f59e0b;
+    --color-warning-foreground: #111827;
+    --color-error: #ef4444;
+    --color-error-foreground: #FFFFFF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Pulse animation for real-time status indicators */
+  @keyframes pulse-status {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .animate-pulse-status {
+    animation: pulse-status 2s ease-in-out infinite;
+  }
+  
+  /* Shimmer effect for loading states */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(90deg, #F9FAFB 0px, #E5E7EB 40px, #F9FAFB 80px);
+    background-size: 200px;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+  
+  /* Micro-interaction transforms */
+  .hover-lift {
+    transition: transform 200ms ease-out, opacity 200ms ease-out;
+  }
+  
+  .hover-lift:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Typography utilities using clamp for adaptive scaling */
+  .text-adaptive-xs {
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  }
+  
+  .text-adaptive-sm {
+    font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  }
+  
+  .text-adaptive-base {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  }
+  
+  .text-adaptive-lg {
+    font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  }
+  
+  .text-adaptive-xl {
+    font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  }
+  
+  .text-adaptive-2xl {
+    font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  }
+  
+  .text-adaptive-3xl {
+    font-size: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  }
+}
+
+@layer utilities {
+  /* Slide-up entrance for cards */
+  @keyframes slide-up {
+    0% { opacity: 0; transform: translateY(12px) scale(0.995); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 420ms cubic-bezier(.16,.84,.24,1) both;
+  }
+
+  /* Gentle floating animation for illustrations */
+  @keyframes floaty {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-floaty {
+    animation: floaty 6s ease-in-out infinite;
+  }
+
+  /* Small fade-in utility */
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 380ms ease both;
+  }
+}

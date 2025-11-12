@@ -1,0 +1,11 @@
+{
+  "name": "takecharge-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node -e \"process.chdir('takecharge/takecharge'); require('child_process').execSync('npm start', {stdio: 'inherit'})\"",
+    "build": "node -e \"process.chdir('takecharge/takecharge'); require('child_process').execSync('npm run build', {stdio: 'inherit'})\"",
+    "serve": "node -e \"process.chdir('takecharge/takecharge'); require('child_process').execSync('npm run serve', {stdio: 'inherit'})\""
+  }
+}
+
